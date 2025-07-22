@@ -1,0 +1,9 @@
+# Dependencies
+/client/node_modules
+/server/node_modules
+
+# Environment variables
+/server/.env
+
+# Build folder
+/client/dist
