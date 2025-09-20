@@ -46,7 +46,7 @@ app.get('/api/restaurants', async (req, res) => {
 app.get('/api/restaurants/:id', async (req, res) => {
   const { id } = req.params;
   try {
-    const restaurant = await query('select * from restaurants left join (select restaurant_id, count(*), trunc(avg(rating),1) as avg from reviews group by restaurant_id) reviews on restaurant_id = reviews.restaurant_id WHERE id = $1', [id]);
+    const restaurant = await query('SELECT * FROM restaurants LEFT JOIN (SELECT restaurant_id, COUNT(*) as count, TRUNC(AVG(rating),1) as avg FROM reviews GROUP BY restaurant_id) reviews ON restaurants.id = reviews.restaurant_id WHERE id = $1', [id]);
 
     const reviews = await query('SELECT * FROM reviews WHERE restaurant_id = $1', [id]);
 
@@ -65,6 +65,7 @@ app.get('/api/restaurants/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 app.post('/api/restaurants', async (req, res) => {
   const { name, location, priceRange } = req.body;

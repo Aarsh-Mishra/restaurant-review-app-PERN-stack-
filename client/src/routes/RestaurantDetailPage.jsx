@@ -35,11 +35,12 @@ const RestaurantDetailPage = () => {
           <h1 className='text-center display-1'>{selectedRestaurant.restaurant.name}</h1>
           
           <div className='text-center'>
-            { selectedRestaurant.restaurant.avg > 0? <StarRating rating={selectedRestaurant.restaurant.avg} /> : <span className='text-warning ml-1'>(0)</span>}
+            { selectedRestaurant.restaurant.avg > 0? <StarRating rating={selectedRestaurant.restaurant.avg} /> : <span className='text-warning ml-1'>No Ratings yet!</span>}
+            <br />
             {selectedRestaurant.restaurant.count > 0 ? (
-              <span className='text-warning ml-1'>({selectedRestaurant.restaurant.count})</span>
+              <span className='text-warning ml-1'>Reviews : {selectedRestaurant.restaurant.count}</span>
             ) : (
-              <span className='text-warning ml-1'>(0)</span>
+              <span className='text-warning ml-1'>Reviews : 0</span>
             )}
           </div>
 
